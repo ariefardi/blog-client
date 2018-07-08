@@ -1,10 +1,9 @@
 <template>
-    <v-carousel class="caro">
+    <v-carousel class="caro" hide-controls delimiter-icon="view_carousel">
         <v-carousel-item>
             <v-container justify-space-between>
                 <v-layout row wrap>
                     <v-flex v-for="(item, index) in items" :key="index" xs3>
-                        <!-- <v-card dark color="secondary"> -->
                         <v-card-media :src="item.src" class="white--text imge" height="250px">
                             <v-container fill-height class="hoverText">
                                 <v-layout fill-height>
@@ -18,7 +17,28 @@
                                 </v-layout>
                             </v-container>
                         </v-card-media>
-                        <!-- </v-card> -->
+                    </v-flex>
+                </v-layout>
+            </v-container>
+        </v-carousel-item>
+
+         <v-carousel-item>
+            <v-container justify-space-between>
+                <v-layout row wrap>
+                    <v-flex v-for="(item, index) in items" :key="index" xs3>
+                        <v-card-media :src="item.src" class="white--text imge" height="250px">
+                            <v-container fill-height class="hoverText">
+                                <v-layout fill-height>
+                                <v-flex xs12 align-end flexbox>
+                                    <v-card flat hover>
+                                    <h3 class="fontHead"> {{item.header}} </h3>
+                                    <p>--</p>
+                                    <p> {{item.tag}} </p>
+                                    </v-card>
+                                </v-flex>
+                                </v-layout>
+                            </v-container>
+                        </v-card-media>
                     </v-flex>
                 </v-layout>
             </v-container>

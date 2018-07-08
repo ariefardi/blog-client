@@ -4,10 +4,13 @@
       absolute
       color="grey"
       dark
+      fixed
     > 
-      <v-toolbar-title class="warna" style="margin-top=20px"> 
+      <v-toolbar-title class="warna" style="margin-top=20px">
+        <v-btn color="grey" icon @click="getArticles"> 
       <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Blogger.svg/2000px-Blogger.svg.png" 
       alt="" height="50px" width="50px">
+       </v-btn>
       </v-toolbar-title>
 
       <v-spacer></v-spacer>
@@ -20,18 +23,34 @@
         logout
       </v-btn>
 
-      <v-btn to="login" flat v-if="loginStatus==false" color="white"> Login
+      <v-btn to="login" flat v-if="loginStatus==false" color="black" > <b> Login </b>
       </v-btn>
-      <v-btn to="register" flat v-if="loginStatus==false" color="white"> Register
+      <v-btn to="register" flat v-if="loginStatus==false" color="black"> <b> Register </b>
+      </v-btn>
+      <v-btn icon  flat>
+        <v-icon>fa fa-facebook</v-icon>
+      </v-btn>
+      <v-btn icon  flat>
+        <v-icon>fa fa-instagram</v-icon>
+      </v-btn>
+      <v-btn icon  flat>
+        <v-icon>fa fa-twitter</v-icon>
+      </v-btn>
+      <v-btn icon  flat>
+        <v-icon>fa fa-steam</v-icon>
       </v-btn>
     </v-toolbar-items>
     </v-toolbar>
     </div>
 </template>
 <script>
+import {mapState,mapActions} from 'vuex'
 import swal from 'sweetalert'
 export default{
   methods: {
+    ...mapActions([
+      'getArticles',
+    ]),
     logout () {
       console.log('clear consolelog')
       swal({
@@ -78,5 +97,8 @@ export default{
   }
   .warna {
       text-decoration-color: black
+  }
+  .btnbtn {
+    font-family: "Ubuntu", sans-serif
   }
 </style>
