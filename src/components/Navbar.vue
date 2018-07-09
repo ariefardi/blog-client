@@ -1,14 +1,13 @@
 <template>
     <div>
     <v-toolbar
-      absolute
       color="grey"
       dark
       fixed
     > 
       <v-toolbar-title class="warna" style="margin-top=20px">
-        <v-btn color="grey" icon @click="getArticles"> 
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Blogger.svg/2000px-Blogger.svg.png" 
+        <v-btn to="/" color="grey" icon @click="getArticles"> 
+      <img src="http://pluspng.com/img-png/beats-electronics-logo-vector-png-beats-electronics-logo-png-828.png" 
       alt="" height="50px" width="50px">
        </v-btn>
       </v-toolbar-title>

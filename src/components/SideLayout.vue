@@ -3,47 +3,45 @@
             <v-card>
               <p align="left" style="font-weight: 700; margin-left:10px; margin-top:5px;">TOP STORIES</p>
               <hr>
-              <div>  
+              <div v-for="(sideArticle, index) in sideArticles" :key="index" >  
                     <p> <v-btn fab dark small color="grey">
-                        <b>1</b>
+                        <b> {{index+1}} </b>
                         </v-btn>
                         <b> 
-                        What in the World is Coding Bootcamp? 
+                        {{sideArticle.title}}
                         </b>
+                        <br>
                     </p>
-                    <p style="margin-left:60px; margin-top:-20px">27 Oct 2017</p> 
-                    <p> <v-btn fab dark small color="grey">
-                        <b>2</b>
-                        </v-btn>
-                        <b> 
-                        What in the World is Coding Bootcamp? 
-                        </b>
-                    </p>
-                    <p style="margin-left:60px; margin-top:-20px">27 Oct 2017</p>
-                    <p> <v-btn fab dark small color="grey">
-                        <b>3</b>
-                        </v-btn>
-                        <b> 
-                        What in the World is Coding Bootcamp? 
-                        </b>
-                    </p>
-                    <p style="margin-left:60px; margin-top:-20px">27 Oct 2017</p>
-                    <p> <v-btn fab dark small color="grey">
-                        <b>4</b>
-                        </v-btn>
-                        <b> 
-                        What in the World is Coding Bootcamp? 
-                        </b>
-                    </p>
-                    <p style="margin-left:60px; margin-top:-20px">27 Oct 2017</p>
-                    
+                    <p style="margin-top:-30px; margin-left:60px; margin-right:-60px"> {{sideArticle.date}} </p>
               </div>
+              <br>
             </v-card>
      </v-flex>
 </template>
 <script>
+import {mapState,mapActions} from 'vuex'
 export default {
-
+    data () {
+        return {
+        }
+    },
+    computed: {
+        ...mapState([
+            'articles','sideArticles'
+        ])
+    },
+    methods: {
+        ...mapActions([
+        ]),
+        testState () {
+            // console.log('articles', this.articles)
+            // this.sideArticle = this.articles
+            // console.log(this.sideArticle)
+        }
+    },
+    created () {
+        this.$store.dispatch('getSideArticles')
+    }
 }
 </script>
 
@@ -53,6 +51,7 @@ p {
     text-align: left
 }
 .mrgnside {
-    margin-left: 70px
+    margin-left: 0px,
+
 }
 </style>

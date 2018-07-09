@@ -1,5 +1,5 @@
 <template>
-<v-container xs12 fluid>
+<v-container xs12>
      <v-flex xs12 class="mrgnside" >
             <v-card>
               <p align="left" style="font-weight: 700; margin-left:10px; margin-top:10px;">Popular Tags</p>
@@ -31,6 +31,6 @@ p {
     text-align: left
 }
 .mrgnside {
-    margin-left: 70px
+    margin-left: -20px
 }
 </style>
