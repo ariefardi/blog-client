@@ -48,9 +48,10 @@ export default{
             .then(({data})=>{
                 localStorage.setItem('token',data.token)
                 localStorage.setItem('username',data.found.username)
+                localStorage.setItem('_id',data._id)
                 console.log(data.token)
                 console.log(data)
-                window.location = '/'
+                this.$router.push('/')
             })
             .catch(err=> {
                 if (err) {
