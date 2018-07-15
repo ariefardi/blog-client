@@ -11,6 +11,7 @@
         </v-flex>
       </v-layout>
     </v-container>
+    <Sidenav class="margintopside"></Sidenav>
 </div>
 </template>
 
@@ -21,6 +22,7 @@ import Articles from '@/components/Articles.vue'
 import Carousel from '@/components/Carousel.vue'
 import SideLayout from '@/components/SideLayout.vue'
 import PopularTag from '@/components/PopularTag.vue'
+import Sidenav from '@/components/Sidenav.vue'
 
 export default {
   name: 'home',
@@ -29,12 +31,11 @@ export default {
     Articles,
     Carousel,
     SideLayout,
-    PopularTag
+    PopularTag,
+    Sidenav
   }
 }
 </script>
 <style lang="scss" scoped>
-  .mrgntop {
-    margin-top: 70px
-  }
+
 </style>
