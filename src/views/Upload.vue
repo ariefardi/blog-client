@@ -11,7 +11,10 @@
       <input v-model="category" placeholder="Category" type="text" tabindex="2" required>
     </fieldset>
     <fieldset>
-      <wysiwyg v-model="content" />
+      <textarea placeholder="Post a few from your article" v-model="content"></textarea>
+    </fieldset>
+    <fieldset>
+      <wysiwyg v-model="realContent" />
     </fieldset>
     <fieldset class="uploadAlign">
          <progress value="0" max="100" id="uploader"> 0% </progress>
@@ -20,7 +23,6 @@
     <fieldset>
         <v-btn flat="" color="green" @click="uploadFile"> submit </v-btn>
     </fieldset>
-    <p class="copyright">Designed by <a href="https://colorlib.com" target="_blank" title="Colorlib">Colorlib</a></p>
   </form>
 </div>
 </body>
@@ -35,6 +37,7 @@ export default {
         return {
             title: '',
             content: '',
+            realContent: '',
             imgSrc: '',
             category: '',
             author: ''
@@ -58,6 +61,7 @@ export default {
                     axios.post('http://localhost:3000/articles',{
                         title: this.title,
                         content: this.content,
+                        realContent: this.realContent,
                         category: this.category,
                         author: localStorage.getItem('username'),
                         imgSrc: urlResponse

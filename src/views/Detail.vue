@@ -1,14 +1,10 @@
 <template>
 <div class="home">
-    <Navbar class="mrgntop"></Navbar>
+    <Navbar></Navbar>
     <Detail></Detail>
     <v-container xs12 grid-list-md text-xs-center>
-        <v-layout row wrap>
-            <DetailArticle></DetailArticle>
-            <v-flex>
-            <SideLayout> </SideLayout>
-            <PopularTag> </PopularTag>
-            </v-flex>
+        <v-layout row wrap justify-center>
+            <DetailArticle ></DetailArticle>
         </v-layout>
     </v-container>
 </div>
@@ -34,7 +30,4 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  .mrgntop {
-    margin-top: 70px
-  }
 </style>

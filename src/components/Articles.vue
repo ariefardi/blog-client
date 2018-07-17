@@ -17,9 +17,9 @@
                     <v-btn small flat icon @click="filterByAuthor(article.author)"> {{article.author}} -</v-btn>{{article.date}} 
                   </p>
                 </span>
-                <div style="margin-top:-20px" class="headline algn"> <h3> <router-link to="/detail" class="router"> {{article.title}}</router-link> </h3></div>
-                <div paragraph> <p> {{article.content}} </p>
-                      <p><v-btn @click="filterByCategory(article.category)" class="mrgnbtn" flat small left> {{article.category}} </v-btn></p>
+                <div style="margin-top:-20px" class="headline algn"> <h3> <router-link :to="`/detail/${article._id}`" class="router" > {{article.title}}</router-link> </h3></div>
+                <div paragraph> <p v-html="article.content" ></p>
+                <p><v-btn @click="filterByCategory(article.category)" class="mrgnbtn" flat small> {{article.category}} </v-btn></p>
                 </div>
               </div>
             </v-flex>
@@ -39,7 +39,11 @@ import {mapState,mapActions} from 'vuex'
     methods: {
       ...mapActions([
         'filterByAuthor','filterByCategory'
-      ])
+      ]),
+      test () {
+        console.log('test')
+        this.$router.push('about')
+      }
     },
     created () {
       this.$store.dispatch('getArticles')

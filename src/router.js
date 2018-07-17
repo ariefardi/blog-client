@@ -37,7 +37,7 @@ export default new Router({
       component: Upload
     },
     {
-      path: '/detail',
+      path: '/detail/:id',
       name: 'detail',
       component: Detail
     }

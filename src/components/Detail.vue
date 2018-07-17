@@ -1,21 +1,43 @@
 <template>
-    <v-jumbotron style="margin-top:-14px">
+    <v-jumbotron>
         <div container >
-            <img src="https://blog.hacktiv8.com/content/images/2018/05/photo-1517430816045-df4b7de11d1d.jpeg" alt="" width="100%">
+            <img :src="pageArticle.imgSrc" alt="" width="100%">
         </div>
         <div class="text-block" >
             <v-container xs12>
                 <v-flex xs8>
-                <h2 style="text-align:left">5 Points to Improve your Programming Logic</h2>
-                <p> <v-btn small color="light-blue" style="margin-left:-330px; margin-top: -0px"  > news </v-btn> </p>
+                <h2 style="text-align:left"> {{pageArticle.title}} </h2>
+                <p> <v-btn small color="light-blue" style="margin-top: -0px"  > {{pageArticle.category}} </v-btn> </p>
                 </v-flex>
             </v-container>
         </div>
     </v-jumbotron>
 </template>
 <script>
+import axios from 'axios'
 export default {
-
+    data () {
+        return {
+          pageArticle : ''
+        }
+    },
+    methods: {
+        getOneArticle () {
+        let id = this.$route.params.id
+        console.log(id,'ini id')
+        axios({
+            method: 'get',
+            url: 'http://localhost:3000/articles/showone/'+this.$route.params.id,
+        })
+        .then(({data})=> {
+            this.pageArticle = data.article[0]
+            console.log(this.pageArticle)
+         })
+        }
+    },
+    created () {
+        this.getOneArticle()
+    }
 }
 </script>
 
