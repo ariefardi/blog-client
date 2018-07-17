@@ -11,7 +11,7 @@
       <input v-model="category" placeholder="Category" type="text" tabindex="2" required>
     </fieldset>
     <fieldset>
-      <textarea v-model="content" placeholder="Type your content message here...." tabindex="5" required></textarea>
+      <textarea v-model="content"></textarea>
     </fieldset>
     <fieldset class="uploadAlign">
          <progress value="0" max="100" id="uploader"> 0% </progress>
@@ -45,30 +45,30 @@ export default {
             this.file = event.target.files[0]
         },
         uploadFile () {
-          let img = 'tfest'
-             storageRef.ref('item_photos/'+ this.file.name).put(this.file)
-             .then(snapshot=> {
-                //  console.log(snapshot)
-                storageRef.ref('item_photos/'+ this.file.name).getDownloadURL()
-                .then(urlResponse=> {
-                    swal('Item Has Been Uploaded')
-                    // console.log(urlResponse,'ini urlnya coy')
-                    img = urlResponse
-                    console.log(urlResponse)
-                })
-             })
-             console.log(img, 'kok gak ada ya')
-            //  axios.post('http://localhost:3000/articles',{
+          console.log('masuk gak ke upload')
+          console.log(this.content)
+            //  storageRef.ref('item_photos/'+ this.file.name).put(this.file)
+            //  .then(snapshot=> {
+            //     //  console.log(snapshot)
+            //     storageRef.ref('item_photos/'+ this.file.name).getDownloadURL()
+            //     .then(urlResponse=> {
+            //         swal('Item Has Been Uploaded')
+            //         // console.log(urlResponse,'ini urlnya coy')
+                    
+            //         axios.post('http://localhost:3000/articles',{
             //             title: this.title,
             //             content: this.content,
             //             category: this.category,
             //             author: localStorage.getItem('username'),
-            //             imgSrc: this.imgSrc
+            //             imgSrc: urlResponse
             //             })
             //             .then(data=>{
             //                 console.log(data, 'ini data masuk ke db')
             //                 // window.location = '/'
             //             })
+            //         console.log(urlResponse)
+            //     })
+            //  })
         }
     }
 }
@@ -98,7 +98,7 @@ body {
 }
 
 .container {
-  max-width: 400px;
+  max-width: 100%;
   width: 100%;
   margin: 0 auto;
   position: relative;
@@ -112,6 +112,7 @@ body {
 #contact button[type="submit"] {
   font: 400 12px/16px "Roboto", Helvetica, Arial, sans-serif;
 }
+
 
 #contact {
   background: #F9F9F9;
@@ -166,7 +167,7 @@ fieldset {
 }
 
 #contact textarea {
-  height: 100px;
+  height: 100%;
   max-width: 100%;
   resize: none;
 }

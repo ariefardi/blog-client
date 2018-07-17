@@ -1,6 +1,7 @@
 <template>
-     <v-flex xs12 class="mrgnside">
-            <v-card>
+<div>
+     <v-flex xs12 sm12 md12 class="mrgnside">
+            <v-card flat>
               <p align="left" style="font-weight: 700; margin-left:10px; margin-top:5px;">TOP STORIES</p>
               <hr>
               <div v-for="(sideArticle, index) in sideArticles" :key="index" >  
@@ -17,10 +18,16 @@
               <br>
             </v-card>
      </v-flex>
+     <PopularTag/>
+</div>
 </template>
 <script>
 import {mapState,mapActions} from 'vuex'
+import PopularTag from '@/components/PopularTag.vue'
 export default {
+    components: {
+        PopularTag
+    },
     data () {
         return {
         }

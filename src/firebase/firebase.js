@@ -2,12 +2,12 @@
  let firebase = require('firebase')
 
  var config = {
-    apiKey: "AIzaSyC9mfkKEOjDpUeP_y3c-pWPcessSiZKPqc",
-    authDomain: "e-commerce-42a4a.firebaseapp.com",
-    databaseURL: "https://e-commerce-42a4a.firebaseio.com",
-    projectId: "e-commerce-42a4a",
-    storageBucket: "e-commerce-42a4a.appspot.com",
-    messagingSenderId: "43747078165"
+    apiKey: "AIzaSyDZcjRbNoVX8gPK23GHSbwLLuEnIu4n1BA",
+    authDomain: "burogu-desu.firebaseapp.com",
+    databaseURL: "https://burogu-desu.firebaseio.com",
+    projectId: "burogu-desu",
+    storageBucket: "burogu-desu.appspot.com",
+    messagingSenderId: "706496084952"
   };
   firebase.initializeApp(config);
 

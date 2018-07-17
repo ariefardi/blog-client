@@ -1,6 +1,6 @@
 <template>
-    <v-flex xs7 >
-      <v-card color="white" class="" v-for=" (article, index) in articles " :key="index">
+    <v-flex xs12 sm7 md7 lg7 >
+      <v-card flat color="white" class="" v-for=" (article, index) in articles " :key="index">
           <v-layout row>
             <v-flex xs5>
               <v-card-media

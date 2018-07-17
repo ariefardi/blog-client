@@ -1,7 +1,6 @@
 <template>
-<v-container xs12>
-     <v-flex xs12 class="mrgnside" >
-            <v-card>
+     <v-flex xs12 sm12 md12 class="mrgnside" >
+            <v-card flat>
               <p align="left" style="font-weight: 700; margin-left:10px; margin-top:10px;">Popular Tags</p>
               <hr>
                  <v-btn small color="grey">news</v-btn> 
@@ -15,9 +14,6 @@
                  <v-btn small color="grey">vue</v-btn>
             </v-card>
      </v-flex>
-</v-container>
-     
-
 </template>
 <script>
 export default {
@@ -29,8 +25,5 @@ export default {
 p {
     font-family: "Ubuntu", sans-serif;
     text-align: left
-}
-.mrgnside {
-    margin-left: -20px
 }
 </style>

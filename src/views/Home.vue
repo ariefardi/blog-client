@@ -2,13 +2,10 @@
 <div class="home">
     <Navbar class="mrgntop"></Navbar>
     <Carousel/>
-    <v-container xs12 grid-list-md text-xs-center>
-      <v-layout row wrap>
-        <Articles/> 
-        <v-flex> 
-        <SideLayout/>
-        <PopularTag/>
-        </v-flex>
+    <v-container fluid grid-list-md text-xs-center>
+      <v-layout row wrap justify-space-around>
+        <Articles/>
+            <SideLayout/>
       </v-layout>
     </v-container>
     <Sidenav class="margintopside"></Sidenav>
