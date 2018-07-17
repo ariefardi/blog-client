@@ -11,7 +11,7 @@
       <input v-model="category" placeholder="Category" type="text" tabindex="2" required>
     </fieldset>
     <fieldset>
-      <textarea v-model="content"></textarea>
+      <wysiwyg v-model="content" />
     </fieldset>
     <fieldset class="uploadAlign">
          <progress value="0" max="100" id="uploader"> 0% </progress>
@@ -47,28 +47,28 @@ export default {
         uploadFile () {
           console.log('masuk gak ke upload')
           console.log(this.content)
-            //  storageRef.ref('item_photos/'+ this.file.name).put(this.file)
-            //  .then(snapshot=> {
-            //     //  console.log(snapshot)
-            //     storageRef.ref('item_photos/'+ this.file.name).getDownloadURL()
-            //     .then(urlResponse=> {
-            //         swal('Item Has Been Uploaded')
-            //         // console.log(urlResponse,'ini urlnya coy')
+             storageRef.ref('item_photos/'+ this.file.name).put(this.file)
+             .then(snapshot=> {
+                //  console.log(snapshot)
+                storageRef.ref('item_photos/'+ this.file.name).getDownloadURL()
+                .then(urlResponse=> {
+                    swal('Item Has Been Uploaded')
+                    // console.log(urlResponse,'ini urlnya coy')
                     
-            //         axios.post('http://localhost:3000/articles',{
-            //             title: this.title,
-            //             content: this.content,
-            //             category: this.category,
-            //             author: localStorage.getItem('username'),
-            //             imgSrc: urlResponse
-            //             })
-            //             .then(data=>{
-            //                 console.log(data, 'ini data masuk ke db')
-            //                 // window.location = '/'
-            //             })
-            //         console.log(urlResponse)
-            //     })
-            //  })
+                    axios.post('http://localhost:3000/articles',{
+                        title: this.title,
+                        content: this.content,
+                        category: this.category,
+                        author: localStorage.getItem('username'),
+                        imgSrc: urlResponse
+                        })
+                        .then(data=>{
+                            console.log(data, 'ini data masuk ke db')
+                            // window.location = '/'
+                        })
+                    console.log(urlResponse)
+                })
+             })
         }
     }
 }
