@@ -8,7 +8,8 @@ export default new Vuex.Store({
   state: {
     articles : [],
     sideArticles : [],
-    comment: ''
+    comment: '',
+    pageArticle: '',
   },
   mutations: {
     setArticles(state, payload){
@@ -25,6 +26,13 @@ export default new Vuex.Store({
     },
     setComment (state, payload) {
       state.comment = payload
+    },
+    setPageArticle (state, payload) {
+      state.pageArticle = payload
+    },
+    setPageArticleComments (state, payload) {
+      state.pageArticle.comments.push(payload)
+      state.comment = ''
     }
   },
   actions: {
@@ -92,10 +100,23 @@ export default new Vuex.Store({
       })
       .then(({data})=> {
         console.log(data.comment)
+        let result = data.comment
+        commit('setPageArticleComments', result)
         swal('Succesfully adding your comment')
       })
       .catch(err=> {
         console.log(err.message)
+      })
+    },
+    getOneArticle ({commit}, id) {
+      console.log(id,'ini id-----')
+      axios({
+        method: 'get',
+        url: 'http://localhost:3000/articles/showone/'+id,
+      })
+      .then(({data})=> {
+        let pageArticle = data.article[0]
+        commit('setPageArticle', pageArticle)
       })
     }
   }

@@ -25,6 +25,11 @@ export default {
         CommentBox,
         CommentList
     },
+    computed: {
+        ...mapState([
+            'pageArticle', 'comments'
+        ])
+    },
      methods: {
         ...mapActions([
             'postComment'

@@ -4,7 +4,7 @@
           fluid
           grid-list-lg
           style="padding:0"
-          v-for="(comment, index) in comments" :key="index"
+          v-for="(comment, index) in pageArticle.comments" :key="index"
         >
           <v-layout row wrap>
   
@@ -37,30 +37,26 @@
 
 <script>
 import axios from 'axios'
+import {mapState, mapActions} from 'vuex'
 export default {
-    data () {
-    return {
-      pageArticle : '',
-      comments: []
-    }
-  },
+  computed: {
+        ...mapState([
+            'pageArticle'
+        ])
+    },
   methods: {
-    getOneArticle () {
-      let id = this.$route.params.id
-      console.log(id,'ini id-----')
-      axios({
-        method: 'get',
-        url: 'http://localhost:3000/articles/showone/'+this.$route.params.id,
-      })
-      .then(({data})=> {
-        this.pageArticle = data.article[0]
-        this.comments = this.pageArticle.comments
-        console.log(this.comments, ' inin ')
-      })
+      ...mapActions([
+          'getOneArticle'
+      ]),
+    triggerIdArticle () {
+        let id = this.$route.params.id
+        console.log(id, ' ini id kebaca gak ya')
+        this.getOneArticle(id)
+
     }
   },
   created () {
-    this.getOneArticle()
+      this.triggerIdArticle()
   }
 }
 </script>
