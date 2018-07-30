@@ -4,6 +4,7 @@
           fluid
           grid-list-lg
           style="padding:0"
+          v-for="(comment, index) in comments" :key="index"
         >
           <v-layout row wrap>
   
@@ -19,11 +20,10 @@
                   </v-flex>
                   <v-flex xs11>
                     <v-card-title style="padding:0" primary-title>
-                      <strong> Anonymous - 10 Hours Ago </strong>
+                      <strong> {{comment.user.username}} - {{comment.date}} </strong>
                     </v-card-title>
                     <v-card-text style="padding:0;text-align:left">
-                        how many of our beloved characters are they gona kill in this arc first bansai now mutsu the list is growing...
-                        OH HELL NO they did NOT just kill Elizabeth!
+                      {{comment.content}}
                     </v-card-text>
                   </v-flex>
                 </v-layout>
@@ -31,6 +31,7 @@
             </v-flex>
           </v-layout>
         </v-container>
+        
       </v-card>
 </template>
 
