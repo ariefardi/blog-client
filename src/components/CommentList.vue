@@ -33,3 +33,33 @@
         </v-container>
       </v-card>
 </template>
+
+<script>
+import axios from 'axios'
+export default {
+    data () {
+    return {
+      pageArticle : '',
+      comments: []
+    }
+  },
+  methods: {
+    getOneArticle () {
+      let id = this.$route.params.id
+      console.log(id,'ini id-----')
+      axios({
+        method: 'get',
+        url: 'http://localhost:3000/articles/showone/'+this.$route.params.id,
+      })
+      .then(({data})=> {
+        this.pageArticle = data.article[0]
+        this.comments = this.pageArticle.comments
+        console.log(this.comments, ' inin ')
+      })
+    }
+  },
+  created () {
+    this.getOneArticle()
+  }
+}
+</script>

@@ -19,7 +19,7 @@
 <script>
 import CommentBox from '@/components/CommentBox.vue'
 import CommentList from '@/components/CommentList.vue'
-import {mapActions} from 'vuex'
+import {mapActions, mapState} from 'vuex'
 export default {
     components: {
         CommentBox,

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
-import router from './router'
+import swal from 'sweetalert'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -85,11 +85,18 @@ export default new Vuex.Store({
       console.log(id)
       let userId = localStorage.getItem('_id')
       console.log(userId, 'user ID')
-      // axios.post('http://localhost:3000/articles/'+id+'/comment',{
-      //   content: this.state.comment,
-      //   article: id,
-      //   user:
-      // })
+      axios.post('http://localhost:3000/articles/'+id+'/comment',{
+        content: this.state.comment,
+        article: id,
+        user: userId
+      })
+      .then(({data})=> {
+        console.log(data.comment)
+        swal('Succesfully adding your comment')
+      })
+      .catch(err=> {
+        console.log(err.message)
+      })
     }
   }
 })

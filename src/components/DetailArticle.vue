@@ -28,14 +28,12 @@ export default {
   methods: {
     getOneArticle () {
       let id = this.$route.params.id
-      console.log(id,'ini id')
       axios({
         method: 'get',
         url: 'http://localhost:3000/articles/showone/'+this.$route.params.id,
       })
       .then(({data})=> {
         this.pageArticle = data.article[0]
-        console.log(this.pageArticle)
       })
     }
   },
