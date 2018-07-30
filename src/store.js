@@ -1,13 +1,14 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
-
+import router from './router'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
     articles : [],
-    sideArticles : []
+    sideArticles : [],
+    comment: ''
   },
   mutations: {
     setArticles(state, payload){
@@ -21,6 +22,9 @@ export default new Vuex.Store({
     },
     setSideArticles(state, payload) {
       state.sideArticles = payload
+    },
+    setComment (state, payload) {
+      state.comment = payload
     }
   },
   actions: {
@@ -29,7 +33,7 @@ export default new Vuex.Store({
       axios.get('http://localhost:3000/articles')
       .then(({data})=> {
         let result = data.dataArticles
-        // console.log(result)
+        console.log(data)
         context.commit('setArticles',result)
         // console.log(this.state.articles)
       })
@@ -75,7 +79,17 @@ export default new Vuex.Store({
     },
     backHome(context) {
       console.log('ini bakchome')
-      this.getArticles()
+    },
+    postComment({commit},id) {
+      console.log('post answer', this.state.comment)
+      console.log(id)
+      let userId = localStorage.getItem('_id')
+      console.log(userId, 'user ID')
+      // axios.post('http://localhost:3000/articles/'+id+'/comment',{
+      //   content: this.state.comment,
+      //   article: id,
+      //   user:
+      // })
     }
   }
 })

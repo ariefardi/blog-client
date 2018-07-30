@@ -48,7 +48,7 @@ export default{
             .then(({data})=>{
                 localStorage.setItem('token',data.token)
                 localStorage.setItem('username',data.found.username)
-                localStorage.setItem('_id',data._id)
+                localStorage.setItem('_id',data.found._id)
                 console.log(data.token)
                 console.log(data)
                 this.$router.push('/')

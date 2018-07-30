@@ -19,7 +19,8 @@
                 </span>
                 <div style="margin-top:-20px" class="headline algn"> <h3> <router-link :to="`/detail/${article._id}`" class="router" > {{article.title}}</router-link> </h3></div>
                 <div paragraph> <p v-html="article.content" ></p>
-                <p><v-btn @click="filterByCategory(article.category)" class="mrgnbtn" flat small> {{article.category}} </v-btn></p>
+                <!-- <p><v-btn @click="filterByCategory(article.category)" class="mrgnbtn" flat small> {{article.category}} </v-btn></p> -->
+                <router-link class="category " to=""> <strong> {{article.category}}  </strong></router-link>
                 </div>
               </div>
             </v-flex>
@@ -61,14 +62,22 @@ p {
   text-decoration-color: #333 !important;
   margin-right: 20px
 }
-.mrgnbtn {
-  margin-left: -35px
-}
+
 .router:hover {
   color: grey,
 }
 .router {
-  color: black,
+  color: black;
+}
+.category {
+  color: white;
+  background-color: grey;
+  padding: 5px;
+  margin-left: -90%;
+}
+.category:hover {
+  background-color: black;
+  text-decoration: none;
 }
 
 </style>

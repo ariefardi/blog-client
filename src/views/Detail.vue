@@ -7,6 +7,7 @@
             <DetailArticle ></DetailArticle>
         </v-layout>
     </v-container>
+      <CommentSection></CommentSection>
 </div>
 </template>
 
@@ -17,7 +18,7 @@ import Detail from '@/components/Detail.vue'
 import DetailArticle from '@/components/DetailArticle'
 import SideLayout from '@/components/SideLayout.vue'
 import PopularTag from '@/components/PopularTag.vue'
-
+import CommentSection from '@/components/CommentSection.vue'
 export default {
   name: 'home',
   components: {
@@ -25,7 +26,8 @@ export default {
     Detail,
     DetailArticle,
     SideLayout,
-    PopularTag
+    PopularTag,
+    CommentSection
   }
 }
 </script>
