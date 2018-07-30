@@ -1,44 +1,48 @@
 <template>
-    <v-carousel class="caro" hide-controls delimiter-icon="view_carousel">
-        <v-carousel-item>
-            <v-container justify-space-between>
-                <v-layout row wrap>
-                    <v-flex v-for="(item, index) in items" :key="index" xs3>
-                        <v-card-media :src="item.src" class="white--text imge" height="250px">
-                            <v-container fill-height class="hoverText">
-                                <v-layout fill-height>
-                                <v-flex xs12 align-end flexbox>
-                                    <v-card flat hover>
-                                    <h3 class="fontHead"> {{item.header}} </h3>
-                                    <p>--</p>
-                                    <p> {{item.tag}} </p>
-                                    </v-card>
-                                </v-flex>
-                                </v-layout>
-                            </v-container>
-                        </v-card-media>
+    <v-carousel  class="caro" >
+        <v-carousel-item  >
+            <v-container style="padding:0">
+                <v-layout row wrap justify-space-around="">
+                    <v-flex v-for="(item, index) in article1" :key="index" xs12 sm6 md6 lg3 >
+                        <v-card flat>
+                            <v-card-media :src="item.imgSrc" class="white--text imge" height="350px" style="padding:0;width:400px">
+                                <v-container class="hoverText">
+                                    <v-layout>
+                                    <v-flex xs12 align-end flexbox>
+                                        <v-card flat hover>
+                                        <h3 class="fontHead"> {{item.title}} </h3>
+                                        <p>--</p>
+                                        <p> {{item.category}} </p>
+                                        </v-card>
+                                    </v-flex>
+                                    </v-layout>
+                                </v-container>
+                            </v-card-media>
+                        </v-card>
                     </v-flex>
                 </v-layout>
             </v-container>
         </v-carousel-item>
 
-         <v-carousel-item>
-            <v-container justify-space-between>
-                <v-layout row wrap>
-                    <v-flex v-for="(item, index) in items" :key="index" xs3>
-                        <v-card-media :src="item.src" class="white--text imge" height="250px">
-                            <v-container fill-height class="hoverText">
-                                <v-layout fill-height>
-                                <v-flex xs12 align-end flexbox>
-                                    <v-card flat hover>
-                                    <h3 class="fontHead"> {{item.header}} </h3>
-                                    <p>--</p>
-                                    <p> {{item.tag}} </p>
-                                    </v-card>
-                                </v-flex>
-                                </v-layout>
-                            </v-container>
-                        </v-card-media>
+         <v-carousel-item  >
+            <v-container style="padding:0">
+                <v-layout row wrap justify-space-around="">
+                    <v-flex v-for="(item, index) in article2" :key="index" xs12 sm6 md6 lg3 >
+                        <v-card flat>
+                            <v-card-media :src="item.imgSrc" class="white--text imge" height="350px" style="padding:0;width:400px">
+                                <v-container class="hoverText">
+                                    <v-layout>
+                                    <v-flex xs12 align-end >
+                                        <v-card flat hover>
+                                        <h3 class="fontHead"> {{item.title}} </h3>
+                                        <p>--</p>
+                                        <p> {{item.category}} </p>
+                                        </v-card>
+                                    </v-flex>
+                                    </v-layout>
+                                </v-container>
+                            </v-card-media>
+                        </v-card>
                     </v-flex>
                 </v-layout>
             </v-container>
@@ -47,7 +51,24 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
 export default {
+    computed: {
+         ...mapState([
+            'articles'
+        ]),
+        article1: {
+            get () {
+                return this.$store.state.articles
+            }
+        },
+        article2: {
+            get () {
+                console.log(this.articles, 'ini articles')
+                return this.$store.state.sideArticles
+            }
+        }
+    },
     data () {
         return {
             items: [

@@ -4,10 +4,10 @@
     <img src="http://pluspng.com/img-png/beats-electronics-logo-vector-png-beats-electronics-logo-png-828.png" 
       alt="" height="23px" width="24px"> Log
   </router-link>
-  <router-link to="upload" v-if="loginStatus" > 
-    <v-icon>cloud_upload</v-icon> Upload 
+  <router-link to="/upload" v-if="loginStatus" > 
+    <v-icon style="padding-right:2px">cloud_upload</v-icon> <strong>Upload</strong> 
   </router-link>
-  <v-btn v-if="loginStatus==true" flat small> Logout </v-btn>
+  <router-link to="/" v-if="loginStatus"> <strong>Logout</strong>  </router-link>
   <router-link to="login" v-if="loginStatus==false" >
     Login
   </router-link>

@@ -21,6 +21,8 @@
                 <div paragraph> <p v-html="article.content" ></p>
                 <!-- <p><v-btn @click="filterByCategory(article.category)" class="mrgnbtn" flat small> {{article.category}} </v-btn></p> -->
                 <router-link class="category " to=""> <strong> {{article.category}}  </strong></router-link>
+                <v-btn v-if="username=='loki'" ><v-icon>edit</v-icon></v-btn>
+                <v-btn v-if="username=='loki'" ><v-icon>delete</v-icon></v-btn>
                 </div>
               </div>
             </v-flex>
@@ -32,6 +34,16 @@
 <script>
 import {mapState,mapActions} from 'vuex'
   export default {
+    created () {
+      this.$store.dispatch('getArticles')
+      this.username = localStorage.getItem('username')
+      console.log(this.username)
+    },
+    data () {
+      return {
+        username: ''
+      }
+    },
     computed: {
       ...mapState([
         'articles'
@@ -46,9 +58,7 @@ import {mapState,mapActions} from 'vuex'
         this.$router.push('about')
       }
     },
-    created () {
-      this.$store.dispatch('getArticles')
-    }
+    
   }
 </script>
 <style lang="scss" scoped>

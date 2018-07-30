@@ -9,7 +9,7 @@
                         <b> {{index+1}} </b>
                         </v-btn>
                         <b> 
-                        {{sideArticle.title}}
+                        <router-link :to="`/detail/${sideArticle._id}`"> {{sideArticle.title}} </router-link>
                         </b>
                         <br>
                     </p>
@@ -60,5 +60,12 @@ p {
 .mrgnside {
     margin-left: 0px,
 
+}
+a {
+    color: black
+}
+a:hover {
+    color: grey;
+    text-decoration: none
 }
 </style>

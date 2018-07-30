@@ -5,7 +5,7 @@
     <v-container fluid grid-list-md text-xs-center>
       <v-layout row wrap justify-space-around>
         <Articles/>
-            <!-- <SideLayout/> -->
+            <SideLayout/>
       </v-layout>
     </v-container>
     <Sidenav class="margintopside"></Sidenav>

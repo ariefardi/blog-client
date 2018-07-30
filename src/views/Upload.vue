@@ -1,5 +1,6 @@
 <template>
 <body>
+  <Navbar class="mrgntop"></Navbar>
     <div class="container">  
   <form id="contact" action="" method="post">
     <h3>Blog</h3>
@@ -31,50 +32,60 @@
 import {storageRef} from  '@/firebase/firebase.js'
 import axios from 'axios'
 import swal from 'sweetalert'
+import Navbar from '@/components/Navbar.vue'
 
 export default {
-    data () {
-        return {
-            title: '',
-            content: '',
-            realContent: '',
-            imgSrc: '',
-            category: '',
-            author: ''
-        }
-    },
-    methods: {
-        postImageHandler () {
-            this.file = event.target.files[0]
-        },
-        uploadFile () {
-          console.log('masuk gak ke upload')
-          console.log(this.content)
-             storageRef.ref('item_photos/'+ this.file.name).put(this.file)
-             .then(snapshot=> {
-                //  console.log(snapshot)
-                storageRef.ref('item_photos/'+ this.file.name).getDownloadURL()
-                .then(urlResponse=> {
-                    swal('Item Has Been Uploaded')
-                    // console.log(urlResponse,'ini urlnya coy')
-                    
-                    axios.post('http://localhost:3000/articles',{
-                        title: this.title,
-                        content: this.content,
-                        realContent: this.realContent,
-                        category: this.category,
-                        author: localStorage.getItem('username'),
-                        imgSrc: urlResponse
-                        })
-                        .then(data=>{
-                            console.log(data, 'ini data masuk ke db')
-                            // window.location = '/'
-                        })
-                    console.log(urlResponse)
-                })
-             })
-        }
-    }
+  components: {
+    Navbar,
+  },
+  data () {
+      return {
+          title: '',
+          content: '',
+          realContent: '',
+          imgSrc: '',
+          category: '',
+          author: ''
+      }
+  },
+  methods: {
+      postImageHandler () {
+          this.file = event.target.files[0]
+      },
+      uploadFile () {
+        console.log('masuk gak ke upload')
+        console.log(this.content)
+        if (!this.file) {
+          swal('Please Upload a Picture')
+        } 
+            storageRef.ref('item_photos/'+ this.file.name).put(this.file)
+            .then(snapshot=> {
+              //  console.log(snapshot)
+              storageRef.ref('item_photos/'+ this.file.name).getDownloadURL()
+              .then(urlResponse=> {
+                  swal('Item Has Been Uploaded')
+                  // console.log(urlResponse,'ini urlnya coy')
+                  
+                  axios.post('http://localhost:3000/articles',{
+                      title: this.title,
+                      content: this.content,
+                      realContent: this.realContent,
+                      category: this.category,
+                      author: localStorage.getItem('username'),
+                      imgSrc: urlResponse
+                      })
+                      .then(data=>{
+                          console.log(data, 'ini data masuk ke db')
+                          this.$router.push('/')
+                      })
+                  console.log(urlResponse)
+              })
+            })
+            .catch(err=> {
+              swal('Gagal Posting, Pleas Upload a Picture')
+            })
+      }
+  }
 }
 </script>
 <style lang="scss" scoped>
