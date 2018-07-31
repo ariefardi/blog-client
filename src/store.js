@@ -33,6 +33,9 @@ export default new Vuex.Store({
     setPageArticleComments (state, payload) {
       state.pageArticle.comments.push(payload)
       state.comment = ''
+    },
+    deleteArticle (state, payload) {
+      state.articles.splice(payload,1)
     }
   },
   actions: {
@@ -118,6 +121,34 @@ export default new Vuex.Store({
         let pageArticle = data.article[0]
         commit('setPageArticle', pageArticle)
       })
+    },
+    deleteArticle ({commit}, index) {
+      console.log('delete article', this.state.articles[index]._id)
+      let id = this.state.articles[index]._id
+      swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this article!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          axios.delete('http://localhost:3000/articles/delete/'+id)
+          .then(()=> {
+            commit('deleteArticle', index)
+          })
+          .catch(err=> {
+            swal ('Some unexpected sh*t happen')
+          })
+          swal("Poof! Your file has been deleted!", {
+            icon: "success",
+          });
+        } else {
+          swal("Your article is safe!");
+        }
+      });
+      
     }
   }
 })

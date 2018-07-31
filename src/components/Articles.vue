@@ -21,9 +21,9 @@
                 <div paragraph> <p v-html="article.content" ></p>
                 <!-- <p><v-btn @click="filterByCategory(article.category)" class="mrgnbtn" flat small> {{article.category}} </v-btn></p> -->
                 <router-link class="category " to=""> <strong> {{article.category}}  </strong></router-link>
-                <v-btn v-if="username=='loki'" ><v-icon>edit</v-icon></v-btn>
-                <v-btn v-if="username=='loki'" ><v-icon>delete</v-icon></v-btn>
                 </div>
+                <v-btn icon v-if="username=='loki'" :to="`edit/${article._id}`" ><v-icon>edit</v-icon></v-btn>
+                <v-btn @click="deleteArticle(index)" icon v-if="username=='loki'" ><v-icon color="red" >delete</v-icon></v-btn>
               </div>
             </v-flex>
             
@@ -51,7 +51,7 @@ import {mapState,mapActions} from 'vuex'
     },
     methods: {
       ...mapActions([
-        'filterByAuthor','filterByCategory'
+        'filterByAuthor','filterByCategory', 'deleteArticle'
       ]),
       test () {
         console.log('test')

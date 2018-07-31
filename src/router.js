@@ -6,6 +6,7 @@ import Login from './views/Login.vue'
 import Register from './views/Register.vue'
 import Upload from './views/Upload.vue'
 import Detail from './views/Detail.vue'
+import Edit from './views/Edit.vue'
 
 Vue.use(Router)
 
@@ -40,6 +41,11 @@ export default new Router({
       path: '/detail/:id',
       name: 'detail',
       component: Detail
+    },
+    {
+      path: '/edit/:id',
+      name: 'edit',
+      component: Edit
     }
   ]
 })
