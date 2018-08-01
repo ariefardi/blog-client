@@ -18,7 +18,6 @@
               <br>
             </v-card>
      </v-flex>
-     <PopularTag/>
 </div>
 </template>
 <script>

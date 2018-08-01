@@ -22,8 +22,8 @@
                 <!-- <p><v-btn @click="filterByCategory(article.category)" class="mrgnbtn" flat small> {{article.category}} </v-btn></p> -->
                 <router-link class="category " to=""> <strong> {{article.category}}  </strong></router-link>
                 </div>
-                <v-btn icon v-if="username=='loki'" :to="`edit/${article._id}`" ><v-icon>edit</v-icon></v-btn>
-                <v-btn @click="deleteArticle(index)" icon v-if="username=='loki'" ><v-icon color="red" >delete</v-icon></v-btn>
+                <v-btn icon v-if="username=='loki' && username " @click="toEdit(article._id)" ><v-icon color="blue">edit</v-icon></v-btn>
+                <v-btn @click="deleteArticle(index)" icon v-if="username=='loki' && username" ><v-icon color="red" >delete</v-icon></v-btn>
               </div>
             </v-flex>
             
@@ -33,6 +33,7 @@
 </template>
 <script>
 import {mapState,mapActions} from 'vuex'
+import swal from 'sweetalert'
   export default {
     created () {
       this.$store.dispatch('getArticles')
@@ -50,6 +51,15 @@ import {mapState,mapActions} from 'vuex'
       ])
     },
     methods: {
+      toEdit (id) {
+        let token = localStorage.getItem('token')
+        if (token) {
+          this.$router.push(`edit/${id}`)
+        }
+        else {
+          swal('Your session ended, restart your browser')
+        }
+      },
       ...mapActions([
         'filterByAuthor','filterByCategory', 'deleteArticle'
       ]),

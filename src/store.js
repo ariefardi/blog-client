@@ -41,7 +41,7 @@ export default new Vuex.Store({
   actions: {
     getArticles (context) {
       console.log('axios get articles')
-      axios.get('http://localhost:3000/articles')
+      axios.get('https://api-blog.ariefardi.xyz/articles')
       .then(({data})=> {
         let result = data.dataArticles
         console.log(data)
@@ -51,7 +51,7 @@ export default new Vuex.Store({
     },
     getSideArticles (context) {
       console.log('axios from getSideArticles')
-      axios.get('http://localhost:3000/articles')
+      axios.get('https://api-blog.ariefardi.xyz/articles')
       .then(({data})=> {
         let temp = data.dataArticles
         let result = []
@@ -96,7 +96,7 @@ export default new Vuex.Store({
       console.log(id)
       let userId = localStorage.getItem('_id')
       console.log(userId, 'user ID')
-      axios.post('http://localhost:3000/articles/'+id+'/comment',{
+      axios.post('https://api-blog.ariefardi.xyz/articles/'+id+'/comment',{
         content: this.state.comment,
         article: id,
         user: userId
@@ -115,7 +115,7 @@ export default new Vuex.Store({
       console.log(id,'ini id-----')
       axios({
         method: 'get',
-        url: 'http://localhost:3000/articles/showone/'+id,
+        url: 'https://api-blog.ariefardi.xyz/articles/showone/'+id,
       })
       .then(({data})=> {
         let pageArticle = data.article[0]
@@ -124,30 +124,37 @@ export default new Vuex.Store({
     },
     deleteArticle ({commit}, index) {
       console.log('delete article', this.state.articles[index]._id)
+      let token = localStorage.getItem('token')
       let id = this.state.articles[index]._id
-      swal({
-        title: "Are you sure?",
-        text: "Once deleted, you will not be able to recover this article!",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-      })
-      .then((willDelete) => {
-        if (willDelete) {
-          axios.delete('http://localhost:3000/articles/delete/'+id)
-          .then(()=> {
-            commit('deleteArticle', index)
-          })
-          .catch(err=> {
-            swal ('Some unexpected sh*t happen')
-          })
-          swal("Poof! Your file has been deleted!", {
-            icon: "success",
-          });
-        } else {
-          swal("Your article is safe!");
-        }
-      });
+      if (token) {
+        swal({
+          title: "Are you sure?",
+          text: "Once deleted, you will not be able to recover this article!",
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
+        })
+        .then((willDelete) => {
+          if (willDelete) {
+            axios.delete('https://api-blog.ariefardi.xyz/articles/delete/'+id)
+            .then(()=> {
+              commit('deleteArticle', index)
+            })
+            .catch(err=> {
+              swal ('Some unexpected sh*t happen')
+            })
+            swal("Poof! Your file has been deleted!", {
+              icon: "success",
+            });
+          } else {
+            swal("Your article is safe!");
+          }
+        });
+      }
+      else {
+        swal('Your session already ended')
+      }
+      
       
     }
   }

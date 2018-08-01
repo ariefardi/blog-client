@@ -43,7 +43,7 @@ export default{
         register () {
             console.log('register')
             console.log(this.username,this.password,this.email)
-            axios.post('http://localhost:3000/users/register',{
+            axios.post('https://api-blog.ariefardi.xyz/users/register',{
                 username: this.username,
                 password: this.password,
                 email: this.email

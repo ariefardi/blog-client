@@ -66,7 +66,7 @@ export default {
                   swal('Item Has Been Uploaded')
                   // console.log(urlResponse,'ini urlnya coy')
                   
-                  axios.post('http://localhost:3000/articles',{
+                  axios.post('https://api-blog.ariefardi.xyz/articles',{
                       title: this.title,
                       content: this.content,
                       realContent: this.realContent,

@@ -19,12 +19,20 @@
                     ></v-card-media>
                   </v-flex>
                   <v-flex xs11>
-                    <v-card-title style="padding:0" primary-title>
+                    <div v-if="pageArticle.comments.length!==0">
+                    <v-card-title style="padding:0" primary-title v-if="comment.user">
                       <strong> {{comment.user.username}} - {{comment.date}} </strong>
+                    </v-card-title>
+                    <v-card-title style="padding:0" primary-title v-else >
+                      <strong> Anonymous - {{comment.date}} </strong>
                     </v-card-title>
                     <v-card-text style="padding:0;text-align:left">
                       {{comment.content}}
                     </v-card-text>
+                    </div>
+                    <div v-else>
+                      No one comment this post
+                    </div>
                   </v-flex>
                 </v-layout>
               </v-card>

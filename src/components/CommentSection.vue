@@ -35,8 +35,13 @@ export default {
             'postComment'
         ]),
         postCommentTrigger () {
-            let query = this.$route.params.id
-            this.postComment(query)
+            if (localStorage.hasOwnProperty('token')) {
+                let query = this.$route.params.id
+                this.postComment(query)
+            }
+            else {
+                swal('You must login first!')
+            }
         }
     },
 }

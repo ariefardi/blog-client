@@ -41,7 +41,7 @@ export default{
         login () {
             console.log('login')
             console.log(this.username,this.password)
-            axios.post('http://localhost:3000/users/login',{
+            axios.post('https://api-blog.ariefardi.xyz/users/login',{
                 username: this.username,
                 password: this.password
             })

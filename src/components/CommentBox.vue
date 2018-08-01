@@ -10,7 +10,7 @@
                 v-model="comment"
               >
                 <div slot="label">
-                  Comment (23)
+                  Comments
                 </div>
               </v-textarea>
               </v-card>
@@ -23,16 +23,25 @@
 <script>
 import {mapActions} from 'vuex'
 export default {
+    created () {
+        
+    },
     data () {
         const defaultForm = Object.freeze({
             bio: '',
         })
         return {
             form: Object.assign({}, defaultForm),
-            defaultForm
+            defaultForm,
+            userlogin: ''
         }
     },
     computed: {
+        commentLength : {
+            get () {
+                return this.$store.state.pageArticles
+            }
+        },
         comment: {
             get () {
                 return this.$store.state.comment
